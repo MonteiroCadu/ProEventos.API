@@ -11,7 +11,7 @@ namespace ProEventos.API.Controllers
     public class EventoController : ControllerBase
     {
         
-        private readonly ILogger<EventoController> _logger;
+       // private readonly ILogger<EventoController> _logger;
 
         public EventoController()
         {

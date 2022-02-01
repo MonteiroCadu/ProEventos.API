@@ -11,6 +11,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using ProEventos.API.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace ProEventos.API
 {
@@ -26,8 +28,15 @@ namespace ProEventos.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            string mysqlSqlConnection = Configuration.GetConnectionString("DefaultConnection");
+            //string secret = Configuration.GetSection("").get
+            //string secret = Configuration.GetSection("MyConfig:SecretToken").Value;
 
+            services.AddDbContextPool<AppDbContext>(options =>
+                                   options.UseMySql(mysqlSqlConnection,
+                                   ServerVersion.AutoDetect(mysqlSqlConnection)));
             services.AddControllers();
+            
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "ProEventos.API", Version = "v1" });
