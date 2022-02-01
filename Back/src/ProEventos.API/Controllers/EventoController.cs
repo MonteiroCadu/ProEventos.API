@@ -1,7 +1,9 @@
 ﻿
 using System.Collections.Generic;
+using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using ProEventos.API.Data;
 using ProEventos.API.Models;
 
 namespace ProEventos.API.Controllers
@@ -10,39 +12,28 @@ namespace ProEventos.API.Controllers
     [Route("api/[controller]")]
     public class EventoController : ControllerBase
     {
-        
-       // private readonly ILogger<EventoController> _logger;
 
-        public EventoController()
+        // private readonly ILogger<EventoController> _logger;
+        private readonly AppDbContext context;
+
+        public EventoController(AppDbContext context)
         {
-            
+            this.context = context;
+
         }
 
         [HttpGet]
         public IEnumerable<Evento> Get()
         {
-            return new Evento[] {
-                new Evento(){
-                EventoId = 1,
-                Tema = "Angular 11 e .NET",
-                Local = "Belo horizonte",
-                lote = "1o lote",
-                QtdPessoas = 250,
-                DataEvento = System.DateTime.Now.AddDays(2).ToString(),
-                imageUrl = "foto.png"
-                },
-                new Evento(){
-                EventoId = 2,
-                Tema = "Angular 11 e .NET",
-                Local = "Belo horizonte",
-                lote = "1o lote",
-                QtdPessoas = 250,
-                DataEvento = System.DateTime.Now.AddDays(3).ToString(),
-                imageUrl = "foto.png"
-                }
-            };
+            return context.Eventos;
         }
-        
+
+        [HttpGet("id")]
+        public IEnumerable<Evento> Get( int id)
+        {
+            return context.Eventos.Where(e => e.EventoId == id);
+        }
+
         [HttpPost]
         public string Post()
         {
@@ -60,6 +51,6 @@ namespace ProEventos.API.Controllers
         {
             return $"Delete id: {id}";
         }
-        
+
     }
 }
