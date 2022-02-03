@@ -9,6 +9,7 @@ namespace ProEventos.API.Models
         public int QtdPessoas {get;set;}
         public string DataEvento {get;set;}
         public string ImageUrl {get;set;}
-        //teste 
+        //teste
+        //teste tbm
     }
 }
