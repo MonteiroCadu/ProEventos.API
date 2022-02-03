@@ -8,9 +8,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EventosComponent implements OnInit {
 
-  public eventos: any;
-
+  public eventos: any = [];
+  public exibirImagem: boolean = true;
+  private _filtroLista: string = '';
   constructor(private http: HttpClient) { }
+
+  public get filtroLista(){
+    return this._filtroLista;
+  }
+  public set filtroLista(filtro:string ){
+    this._filtroLista = filtro;
+  }
+
+  public filtrar(){
+
+  }
+
+  setExibirImagem(){
+    this.exibirImagem = !this.exibirImagem
+  }
 
   ngOnInit(): void {
     this.getEventos();

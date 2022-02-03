@@ -28,10 +28,16 @@ namespace ProEventos.API.Controllers
             return context.Eventos;
         }
 
-        [HttpGet("id")]
+        [HttpGet("{id}")]
         public IEnumerable<Evento> Get( int id)
         {
             return context.Eventos.Where(e => e.EventoId == id);
+        }
+
+        [HttpGet("buscaPorTema/{tema}")]
+        public IEnumerable<Evento> Get( int tema)
+        {
+            return context.Eventos.Where(e => e.tema == tema);
         }
 
         [HttpPost]
