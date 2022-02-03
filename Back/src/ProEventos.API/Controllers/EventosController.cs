@@ -35,9 +35,9 @@ namespace ProEventos.API.Controllers
         }
 
         [HttpGet("buscaPorTema/{tema}")]
-        public IEnumerable<Evento> Get( int tema)
+        public IEnumerable<Evento> Get( string tema)
         {
-            return context.Eventos.Where(e => e.tema == tema);
+            return context.Eventos.Where(e => e.Tema == tema);
         }
 
         [HttpPost]
