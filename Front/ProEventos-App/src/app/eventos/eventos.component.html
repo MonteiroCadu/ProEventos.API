@@ -2,13 +2,12 @@
 <hr>
 
 <div class="row row-cols-lg-auto g-3 align-items-center">
+  <div class="col-12"><label class="mr-2">Filtro</label></div>
   <div class="col-12">
     <input type="text" class="form-control mr-2" placeholder="buscar" [(ngModel)]="filtroLista">
   </div>
-  <div class="col-12"><button class="btn btn-outline-success" (click)="filtrar()">Buscar</button></div>
 </div>
 <br>
-<h3>Filtro: {{filtroLista}}</h3>
 <table class="table table-striped table-hover">
   <thead class="table-dark">
     <tr>
@@ -23,10 +22,11 @@
       <th>Data</th>
       <th>Qtd Participantes</th>
       <th>Lote</th>
+      <th>Opções</th>
     </tr>
   </thead>
   <tbody *ngIf="eventos && eventos.length">
-    <tr *ngFor="let evento of eventos">
+    <tr *ngFor="let evento of eventosFiltrados">
       <td>
         <img [collapse]="!exibirImagem" src="/assets/{{evento.imageUrl}}" [style.width.px]="100" [isAnimated]="true">
       </td>
@@ -36,6 +36,10 @@
       <td>{{evento.dataEvento}}</td>
       <td class="text-center">{{evento.qtdPessoas}}</td>
       <td>{{evento.lote}}</td>
+      <td>
+        <button type="button" class="btn btn-primary me-md-2 btn-sm ">Editar</button>
+        <button type="button" class="btn btn-danger btn-sm">Excluir</button>
+      </td>
     </tr>
   </tbody>
   <tfoot *ngIf="!eventos || !eventos.length">
