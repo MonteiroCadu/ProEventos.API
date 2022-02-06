@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using ProEventos.API.Data;
-using ProEventos.API.Models;
+using ProEventos.Domain;
+using ProEventos.Persistence;
+
+
 
 namespace ProEventos.API.Controllers
 {
@@ -14,9 +15,9 @@ namespace ProEventos.API.Controllers
     {
 
         // private readonly ILogger<EventoController> _logger;
-        private readonly AppDbContext context;
+        private readonly ProEventosContext context;
 
-        public EventosController(AppDbContext context)
+        public EventosController(ProEventosContext context)
         {
             this.context = context;
 
@@ -31,7 +32,7 @@ namespace ProEventos.API.Controllers
         [HttpGet("{id}")]
         public IEnumerable<Evento> Get( int id)
         {
-            return context.Eventos.Where(e => e.EventoId == id);
+            return context.Eventos.Where(e => e.Id == id);
         }
 
         [HttpGet("buscaPorTema/{tema}")]
