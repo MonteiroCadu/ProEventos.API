@@ -21,11 +21,8 @@ namespace ProEventos.Persistence.Migrations
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Local = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    lote = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
                     QtdPessoas = table.Column<int>(type: "int", nullable: false),
-                    DataEvento = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    DataEvento = table.Column<DateTime>(type: "datetime(6)", nullable: true),
                     ImageUrl = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Telefone = table.Column<string>(type: "longtext", nullable: true)

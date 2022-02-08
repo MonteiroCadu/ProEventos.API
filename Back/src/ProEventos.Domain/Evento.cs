@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -10,7 +11,7 @@ namespace ProEventos.Domain
         public string Local {get;set;}
         
         public int QtdPessoas {get;set;}
-        public string DataEvento {get;set;}
+        public DateTime? DataEvento {get;set;}
         public string ImageUrl {get;set;}
         public string Telefone { get; set; }
         public string Email { get; set; }
