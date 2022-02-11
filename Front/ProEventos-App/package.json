@@ -11,7 +11,7 @@
   "private": true,
   "dependencies": {
     "@angular/animations": "~13.2.0",
-    "@angular/common": "~13.2.0",
+    "@angular/common": "^13.2.2",
     "@angular/compiler": "~13.2.0",
     "@angular/core": "~13.2.0",
     "@angular/forms": "~13.2.0",
@@ -23,6 +23,8 @@
     "bootstrap4": "^0.0.1-security",
     "bootstrap5": "^1.1.9",
     "ngx-bootstrap": "^8.0.0",
+    "ngx-spinner": "^13.1.1",
+    "ngx-toastr": "^14.2.1",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"
@@ -34,11 +36,14 @@
     "@types/jasmine": "~3.10.0",
     "@types/node": "^12.11.1",
     "jasmine-core": "~4.0.0",
-    "karma": "~6.3.0",
+    "karma": "^6.3.16",
     "karma-chrome-launcher": "~3.1.0",
     "karma-coverage": "~2.1.0",
     "karma-jasmine": "~4.0.0",
     "karma-jasmine-html-reporter": "~1.7.0",
     "typescript": "~4.5.2"
+  },
+  "optionalDependencies": {
+    "ngx-toaster": "^1.0.1"
   }
 }
