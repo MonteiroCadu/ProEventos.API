@@ -1,0 +1,114 @@
+<div class="row mt-4">
+
+	<div class="col-md-6 d-none d-md-block" style="height: 450px;">
+		<div class="text-center col-md-12 my-auto side-heder">
+			<h1>Cadastro de Usuário</h1>
+			<img src="../../../../assets/registerImage.png" class="my-4" alt="" width="400px">
+		</div>
+	</div>
+
+	<div class="col-md-6">
+
+		<form [formGroup]="form" class="p-2">
+      <div class="pb-2 d-block d-md-none">
+        <h3 class="border-bottom">Cadastro de Usuário</h3>
+      </div>
+      <div class="row col-sm-13 mb-3">
+        <div class="form-group col-sm-6 ">
+          <label>Primeiro Nome</label>
+          <input type="text" class="form-control"
+          [ngClass]="{'is-invalid' : f.primeiroNome.errors && f.primeiroNome.touched }"
+          formControlName="primeiroNome"
+          placeholder="Insira o Primeiro nome" />
+          <div  class="invalid-feedback">
+            <label *ngIf="f.primeiroNome.hasError('required')">Campo obrigatório!</label>
+            <label *ngIf="f.primeiroNome.hasError('minlength')">Mínimo de 3 caracteres!</label>
+            <label *ngIf="f.primeiroNome.hasError('maxlength')">Máximo de 30 caracteres!</label>
+          </div>
+        </div>
+        <div class="form-group col-sm-6 ">
+          <label>Último nome</label>
+          <input type="text" class="form-control"
+          [ngClass]="{'is-invalid' : f.ultimoNome.errors && f.ultimoNome.touched }"
+          formControlName="ultimoNome"
+          placeholder="Insira o Último nome" />
+          <div  class="invalid-feedback">
+            <label *ngIf="f.ultimoNome.hasError('required')">{{obrigatorioMSG}}</label>
+            <label *ngIf="f.ultimoNome.hasError('minlength')">Mínimo de 3 caracteres!</label>
+            <label *ngIf="f.ultimoNome.hasError('maxlength')">Máximo de 30 caracteres!</label>
+          </div>
+        </div>
+      </div>
+      <div class="form-group col-sm-12 mb-3">
+        <label for="">Email:</label>
+        <input class="form-control " type="text"
+        [ngClass]="{'is-invalid' : f.email.errors && f.email.touched }"
+        formControlName="email"
+        placeholder="Insira o e-mail" />
+        <div class="invalid-feedback">
+          <label *ngIf="f.email.hasError('required')">{{obrigatorioMSG}}</label>
+          <label *ngIf="f.email.hasError('email')">E-mail inválido!</label>
+        </div>
+      </div>
+      <div class="form-group col-sm-12 mb-3">
+        <label for="">Usuario:</label>
+        <input class="form-control" type="text"
+        [ngClass]="{'is-invalid' : f.userName.errors && f.userName.touched }"
+        formControlName="userName"
+        placeholder="Insira o nome de Usuário" />
+        <div  class="invalid-feedback">
+          <label *ngIf="f.userName.hasError('required')">{{obrigatorioMSG}}</label>
+          <label *ngIf="f.userName.hasError('minlength')">Mínimo de 4 caracteres!</label>
+          <label *ngIf="f.userName.hasError('maxlength')">Máximo de 10 caracteres!</label>
+        </div>
+      </div>
+      <div class="row col-sm-13 mb-3">
+        <div class="form-group col-sm-6 ">
+          <label for="">Senha:</label>
+          <input class="form-control" type="password"
+          [ngClass]="{'is-invalid' : f.senha.errors && f.senha.touched }"
+          formControlName="senha"
+          placeholder="Digite uma Senha" />
+
+          <div class="invalid-feedback">
+            <label *ngIf="f.senha.hasError('required')">{{obrigatorioMSG}}</label>
+            <label *ngIf="f.senha.hasError('minlength')">Mínimo de 6 caracteres!</label>
+          </div>
+        </div>
+        <div class="form-group col-sm-6 ">
+          <label for="">Confirmar Senha:</label>
+          <input class="form-control" type="password"
+          [ngClass]="{'is-invalid' : f.confirmeSenha.errors && f.confirmeSenha.touched }"
+          formControlName="confirmeSenha"
+          placeholder="Confirme a Senha" />
+          <div class="invalid-feedback">
+            <label *ngIf="f.confirmeSenha.errors?.required">{{obrigatorioMSG}}</label>
+            <label *ngIf="f.confirmeSenha.hasError('minlength')">Mínimo de 6 caracteres!</label>
+            <label *ngIf="f.confirmeSenha.hasError('mustMatch')">Senha diferente!</label>
+          </div>
+        </div>
+      </div>
+      <div class="row col-sm-13 mb-3">
+        <div class="custom-control custom-checkbox">
+          <input type="checkbox" class="custom-control-input" id="customCheck1">
+          <label class="custom-control-label">Eu concordo com os <a href="#">Termos de Uso</a>.</label>
+        </div>
+      </div>
+      <div class="row col-sm-13">
+        <div class="input-group">
+          <button class="btn btn-lg btn-success btn-block w-100" [disabled]="form.invalid">
+            Registar
+          </button>
+        </div>
+      </div>
+      <div class="d-flex col-sm-13 justify-content-center ">
+        <div >
+          <a class="btn btn-link btn-block" routerLink="/user/login">
+            Já sou Cadastrado
+          </a>
+        </div>
+      </div>
+    </form>
+
+	</div>
+</div>

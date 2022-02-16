@@ -1,2 +1,17 @@
-<h3>{{tituloName}}</h3>
-<hr>
+
+
+<div class="d-flex p-3 my-3 text-white bg-dark rounded shadow-sm">
+    <div class="d-flex aling-item-center me-auto">
+      <i class="{{iconClass}} me-3"></i>
+      <div class='"lh-100"'>
+        <h2 class="mb-0 ">{{tituloName}}</h2>
+        <small>{{subTitulo}}</small>
+      </div>
+    </div>
+    <div class="p-3">
+      <button class="btn btn-outline-light" *ngIf="botaoListar" (click)="listar()">
+        Listar {{tituloName}}
+      </button>
+    </div>
+
+  </div>
