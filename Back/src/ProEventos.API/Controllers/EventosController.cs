@@ -1,11 +1,8 @@
-﻿
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using ProEventos.Application.Contratos;
-using ProEventos.Domain;
+using ProEventos.Application.Dtos;
 //using ProEventos.Persistence.Contextos;
 
 
@@ -31,7 +28,7 @@ namespace ProEventos.API.Controllers
             try
             {
                 var eventos = await _eventoService.GetAllAsync(); 
-                if(eventos == null) return NotFound("Nenum Evento Encontrado");
+                if(eventos == null) return NoContent();
 
                 return Ok(eventos);
             }
@@ -47,7 +44,7 @@ namespace ProEventos.API.Controllers
             try
             {
                 var evento = await _eventoService.GetByIdAsync(id,true); 
-                if(evento == null) return NotFound("Evento não encontrado");
+                if(evento == null) return NoContent();
 
                 return Ok(evento);
             }
@@ -63,7 +60,7 @@ namespace ProEventos.API.Controllers
             try
             {
                 var evento = await _eventoService.GetAllByTemaAsync(tema,true); 
-                if(evento == null) return NotFound("Evento não encontrado");
+                if(evento == null) return NoContent();
 
                 return Ok(evento);
             }
@@ -74,7 +71,7 @@ namespace ProEventos.API.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Post(Evento model)
+        public async Task<IActionResult> Post(EventoDto model)
         {
             try
             {
@@ -90,12 +87,12 @@ namespace ProEventos.API.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Put(int id,Evento model)
+        public async Task<IActionResult> Put(int id,EventoDto model)
         {
             try
             {
                 var evento = await _eventoService.Update(id, model);
-                if(evento == null) return NotFound("Erro ao tentar atualizar o evento");
+                if(evento == null) return NoContent();
 
                 return Ok(evento);
             }
@@ -110,8 +107,12 @@ namespace ProEventos.API.Controllers
         {
             try
             {
-               
-                return await _eventoService.Delete(id) ?  Ok("Deletado") : NotFound("Evento não encontraro para deletar");
+                var evento = await _eventoService.GetByIdAsync(id,false);
+                if (evento == null) return NoContent();
+
+                return await _eventoService.Delete(id) 
+                        ?  Ok(new  {message = "Deletado"}) 
+                        : throw new System.Exception($"Erro não espessifico ao tentar deletar o evento Id: {id}");
 
                
             }

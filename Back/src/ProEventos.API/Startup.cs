@@ -11,6 +11,7 @@ using ProEventos.Application;
 using ProEventos.Application.Contratos;
 using ProEventos.Persistence;
 using ProEventos.Persistence.Contratos;
+using System;
 
 namespace ProEventos.API
 {
@@ -32,14 +33,18 @@ namespace ProEventos.API
                                    options.UseMySql(mysqlSqlConnection,
                                    ServerVersion.AutoDetect(mysqlSqlConnection)));
             services.AddControllers()
-                    .AddNewtonsoftJson(
+                    .AddNewtonsoftJson( //Para evitar loop infinito no carregamento de Json´s compostos
                         x => x.SerializerSettings.ReferenceLoopHandling = 
                         Newtonsoft.Json.ReferenceLoopHandling.Ignore
                     );
 
+            //injeção de dependencias
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             services.AddScoped<IEventoService,EventoService>();
             services.AddScoped<IGeralPersist,GeralPersist>();
             services.AddScoped<IEventoPersist,EventoPersist>();
+            services.AddScoped<ILotePersist,LotePersist>();
+            services.AddScoped<ILoteService,LoteService>();
 
             services.AddCors();
 
